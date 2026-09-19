@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Support QA Score Calculator</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 30px;
+    }
+
+    .category {
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: #2563eb;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result {
+      display: none;
+      margin-top: 30px;
+      padding: 22px;
+      border-radius: 10px;
+      background: #f3f4f6;
+    }
+
+    .score {
+      font-size: 34px;
+      font-weight: bold;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .rating {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .status {
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .error {
+      color: #b91c1c;
+      font-weight: bold;
+    }
+
+    .success {
+      color: #15803d;
+      font-weight: bold;
+    }
+
+    .footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 13px;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="card">
+
+      <h1>Support QA Score Calculator</h1>
+
+      <p class="subtitle">
+        Evaluate a customer support interaction using a 100-point QA framework.
+      </p>
+
+      <div class="category">
+        <label for="communication">
+          Communication & Professionalism (Max 20)
+        </label>
+
+        <input
+          type="number"
+          id="communication"
+          min="0"
+          max="20"
+          placeholder="Enter score from 0 to 20"
+        >
+      </div>
+
+      <div class="category">
+        <label for="understanding">
+          Understanding the Customer's Issue (Max 20)
+        </label>
+
+        <input
+          type="number"
+          id="understanding"
+          min="0"
+          max="20"
+          placeholder="Enter score from 0 to 20"
+        >
+      </div>
+
+      <div class="category">
+        <label for="resolution">
+          Resolution & Accuracy (Max 30)
+        </label>
+
+        <input
+          type="number"
+          id="resolution"
+          min="0"
+          max="30"
+          placeholder="Enter score from 0 to 30"
+        >
+      </div>
+
+      <div class="category">
+        <label for="compliance">
+          Process Compliance (Max 15)
+        </label>
+
+        <input
+          type="number"
+          id="compliance"
+          min="0"
+          max="15"
+          placeholder="Enter score from 0 to 15"
+        >
+      </div>
+
+      <div class="category">
+        <label for="experience">
+          Customer Experience (Max 15)
+        </label>
+
+        <input
+          type="number"
+          id="experience"
+          min="0"
+          max="15"
+          placeholder="Enter score from 0 to 15"
+        >
+      </div>
+
+      <div class="category">
+        <label for="critical">
+          Critical Error Identified?
+        </label>
+
+        <select id="critical">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+
+      <button onclick="calculateScore()">
+        Calculate QA Score
+      </button>
+
+      <div class="result" id="result">
+
+        <div class="score" id="score"></div>
+
+        <div class="rating" id="rating"></div>
+
+        <div class="status" id="status"></div>
+
+      </div>
+
+      <div class="footer">
+        Support QA Scorecard • Open-source QA framework
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    function calculateScore() {
+
+      const fields = [
+        { id: "communication", max: 20 },
+        { id: "understanding", max: 20 },
+        { id: "resolution", max: 30 },
+        { id: "compliance", max: 15 },
+        { id: "experience", max: 15 }
+      ];
+
+      let total = 0;
+
+      for (const field of fields) {
+
+        const input = document.getElementById(field.id);
+        const value = Number(input.value);
+
+        if (
+          input.value.trim() === "" ||
+          !Number.isFinite(value) ||
+          value < 0 ||
+          value > field.max
+        ) {
+          alert(
+            "Please enter a valid score between 0 and " +
+            field.max +
+            " for every category."
+          );
+
+          input.focus();
+          return;
+        }
+
+        total += value;
+      }
+
+      let rating;
+
+      if (total >= 90) {
+        rating = "Excellent";
+      } else if (total >= 80) {
+        rating = "Meets Expectations";
+      } else if (total >= 70) {
+        rating = "Needs Improvement";
+      } else {
+        rating = "Unsatisfactory";
+      }
+
+      const critical =
+        document.getElementById("critical").value === "yes";
+
+      const result = document.getElementById("result");
+      const score = document.getElementById("score");
+      const ratingElement = document.getElementById("rating");
+      const status = document.getElementById("status");
+
+      score.textContent = total + " / 100";
+      ratingElement.textContent = "Rating: " + rating;
+
+      if (critical) {
+
+        status.innerHTML =
+          '<span class="error">' +
+          'Critical Error: YES<br>' +
+          'Result Flag: CRITICAL FAILURE' +
+          '</span>';
+
+      } else {
+
+        status.innerHTML =
+          '<span class="success">' +
+          'Critical Error: NO<br>' +
+          'Result Flag: Standard numerical result' +
+          '</span>';
+      }
+
+      result.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
