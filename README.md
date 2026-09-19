@@ -53,7 +53,7 @@ The first version will focus on creating a practical and reusable customer suppo
 
 - [x] Create the first QA scorecard template
 - [x] Add detailed scoring guidelines
-- [ ] Add sample evaluated interactions
+- [x] Add sample evaluated interactions
 - [ ] Add critical-error rules
 - [ ] Add automatic score calculation
 - [ ] Add contribution guidelines
