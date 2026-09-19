@@ -51,7 +51,7 @@ The first version will focus on creating a practical and reusable customer suppo
 
 ## 🗺️ Roadmap
 
-- [ ] Create the first QA scorecard template
+- [x] Create the first QA scorecard template
 - [ ] Add detailed scoring guidelines
 - [ ] Add sample evaluated interactions
 - [ ] Add critical-error rules
