@@ -250,7 +250,9 @@
       <button onclick="calculateScore()">
         Calculate QA Score
       </button>
-
+<button id="printReportBtn" onclick="window.print()" style="display:none; margin-top:10px;">
+    Print / Download QA Report
+</button>
       <div class="result" id="result">
 
         <div class="score" id="score"></div>
@@ -347,6 +349,7 @@
       }
 
       result.style.display = "block";
+  document.getElementById("printReportBtn").style.display = "block";
     }
   </script>
 
