@@ -42,6 +42,31 @@ This project can be useful for:
 - Team Leaders
 - Operations Managers
 - Small support teams building a QA process from scratch
+## 🐍 Running the QA Score Calculator
+
+The project includes a simple Python command-line calculator for automatically calculating QA scores.
+
+### Requirements
+
+- Python 3.8 or newer
+- No external packages required
+
+### Run
+
+Clone this repository and run:
+
+```bash
+python src/score_calculator.py
+```
+The calculator will ask for scores across the five QA categories:
+
+1. Communication & Professionalism
+2. Understanding the Customer's Issue
+3. Resolution & Accuracy
+4. Process Compliance
+5. Customer Experience
+
+It will then display the final score, performance rating, and critical-error status.
 
 ## 🚧 Project Status
 
