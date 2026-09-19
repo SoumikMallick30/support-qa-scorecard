@@ -81,7 +81,7 @@ The first version will focus on creating a practical and reusable customer suppo
 - [x] Add sample evaluated interactions
 - [x] Add critical-error rules
 - [x] Add automatic score calculation
-- [ ] Add contribution guidelines
+- [x] Add contribution guidelines
 - [ ] Explore a simple web-based version
 
 ## 🤝 Contributing
