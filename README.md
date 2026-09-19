@@ -1,5 +1,9 @@
 # Support QA Scorecard
+## 🌐 Live Demo
 
+Try the Support QA Score Calculator here:
+
+👉 https://soumikmallick30.github.io/support-qa-scorecard/
 An open-source quality assurance scorecard for evaluating customer support interactions, identifying coaching opportunities, and improving service quality.
 
 ## 🎯 Purpose
