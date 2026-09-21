@@ -106,7 +106,7 @@ node --test tests/test_web_calculator.js
 
 ## Project Status
 
-Version 1.0 is release-ready with a usable web calculator, command-line calculator, portable report exports, documentation, examples, and automated Python and JavaScript tests.
+Version 1.1 includes a usable web calculator, command-line calculator, portable report exports, documentation, examples, and automated Python and JavaScript tests.
 
 ## Roadmap
 
