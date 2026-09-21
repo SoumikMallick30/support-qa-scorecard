@@ -1,18 +1,20 @@
 # Support QA Scorecard
-## 🌐 Live Demo
+
+## Live Demo
 
 Try the Support QA Score Calculator here:
 
-👉 https://soumikmallick30.github.io/support-qa-scorecard/
+https://soumikmallick30.github.io/support-qa-scorecard/
+
 An open-source quality assurance scorecard for evaluating customer support interactions, identifying coaching opportunities, and improving service quality.
 
-## 🎯 Purpose
+## Purpose
 
-Support QA Scorecard is designed to help customer support teams, Quality Analysts, and Team Leads evaluate customer interactions using a simple and consistent quality framework.
+Support QA Scorecard helps customer support teams, Quality Analysts, and Team Leads evaluate customer interactions with a simple, consistent quality framework.
 
-The project aims to make support quality evaluation easier, transparent, and reusable across different customer service teams.
+The project is designed to make support quality reviews easier to run, easier to explain, and reusable across different customer service teams.
 
-## 📊 QA Categories
+## QA Categories
 
 The scorecard evaluates customer interactions across key quality areas:
 
@@ -25,18 +27,20 @@ The scorecard evaluates customer interactions across key quality areas:
 | Customer Experience | 15% |
 | **Total** | **100%** |
 
-## ✨ Planned Features
+## Current Features
 
-- Simple 100-point QA scoring system
-- Customizable evaluation criteria
-- Automatic total score calculation
+- 100-point QA scoring framework
+- Web-based QA score calculator
+- Python command-line calculator
+- Reusable scoring logic with automated tests
 - Critical-error tracking
 - QA feedback and coaching notes
-- Sample customer support evaluations
-- Easy-to-use scorecard template
-- Future reporting and analytics support
+- Print/download support for QA reports
+- Detailed scoring guidelines
+- Sample evaluated interaction
+- Contribution guidelines
 
-## 👥 Who Is This For?
+## Who Is This For?
 
 This project can be useful for:
 
@@ -46,39 +50,55 @@ This project can be useful for:
 - Team Leaders
 - Operations Managers
 - Small support teams building a QA process from scratch
-## 🐍 Running the QA Score Calculator
 
-The project includes a simple Python command-line calculator for automatically calculating QA scores.
+## Running the QA Score Calculator
+
+The project includes a Python calculator for automatically calculating QA scores.
 
 ### Requirements
 
 - Python 3.8 or newer
 - No external packages required
 
-### Run
+### Interactive Mode
 
 Clone this repository and run:
 
 ```bash
 python src/score_calculator.py
 ```
-The calculator will ask for scores across the five QA categories:
 
-1. Communication & Professionalism
-2. Understanding the Customer's Issue
-3. Resolution & Accuracy
-4. Process Compliance
-5. Customer Experience
+The calculator will ask for scores across the five QA categories and whether a critical error was identified.
 
-It will then display the final score, performance rating, and critical-error status.
+### Scripted Mode
 
-## 🚧 Project Status
+You can also pass all scores as command-line arguments:
 
-This project is currently under active development.
+```bash
+python src/score_calculator.py \
+  --communication 18 \
+  --understanding 17 \
+  --resolution 24 \
+  --compliance 12 \
+  --experience 12 \
+  --critical-error
+```
 
-The first version will focus on creating a practical and reusable customer support QA scorecard. Additional features and documentation will be added over time.
+The calculator displays the final score, performance rating, and critical-error status.
 
-## 🗺️ Roadmap
+## Running Tests
+
+Run the automated test suite with:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+## Project Status
+
+This project is actively developed and has a usable web calculator, command-line calculator, documentation, examples, and automated tests.
+
+## Roadmap
 
 - [x] Create the first QA scorecard template
 - [x] Add detailed scoring guidelines
@@ -86,14 +106,17 @@ The first version will focus on creating a practical and reusable customer suppo
 - [x] Add critical-error rules
 - [x] Add automatic score calculation
 - [x] Add contribution guidelines
-- [ ] Explore a simple web-based version
+- [x] Add a simple web-based version
+- [x] Add automated tests
+- [ ] Add exportable CSV or JSON report data
+- [ ] Add configurable category weights
 
-## 🤝 Contributing
+## Contributing
 
 Contributions, suggestions, bug reports, and ideas are welcome.
 
 If you have experience in customer support, quality assurance, or software development, feel free to open an issue or contribute to the project.
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
