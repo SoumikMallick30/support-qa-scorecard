@@ -1,5 +1,8 @@
 # Support QA Scorecard
 
+[![Automated Tests](https://github.com/SoumikMallick30/support-qa-scorecard/actions/workflows/python-app.yml/badge.svg)](https://github.com/SoumikMallick30/support-qa-scorecard/actions/workflows/python-app.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 ## Live Demo
 
 Try the Support QA Score Calculator here:
@@ -35,7 +38,8 @@ The scorecard evaluates customer interactions across key quality areas:
 - Reusable scoring logic with automated tests
 - Critical-error tracking
 - QA feedback and coaching notes
-- Print/download support for QA reports
+- JSON and CSV report exports
+- Print-ready QA reports
 - Detailed scoring guidelines
 - Sample evaluated interaction
 - Contribution guidelines
@@ -94,9 +98,15 @@ Run the automated test suite with:
 python -m unittest discover -s tests -v
 ```
 
+Run the web scoring and export tests with Node.js 22 or newer:
+
+```bash
+node --test tests/test_web_calculator.js
+```
+
 ## Project Status
 
-This project is actively developed and has a usable web calculator, command-line calculator, documentation, examples, and automated tests.
+Version 1.0 is release-ready with a usable web calculator, command-line calculator, portable report exports, documentation, examples, and automated Python and JavaScript tests.
 
 ## Roadmap
 
@@ -108,14 +118,22 @@ This project is actively developed and has a usable web calculator, command-line
 - [x] Add contribution guidelines
 - [x] Add a simple web-based version
 - [x] Add automated tests
-- [ ] Add exportable CSV or JSON report data
+- [x] Add exportable CSV or JSON report data
 - [ ] Add configurable category weights
+- [ ] Add saved evaluation history
+- [ ] Add anonymized example datasets
 
 ## Contributing
 
 Contributions, suggestions, bug reports, and ideas are welcome.
 
 If you have experience in customer support, quality assurance, or software development, feel free to open an issue or contribute to the project.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow and [SECURITY.md](SECURITY.md) for responsible vulnerability reporting.
+
+## Privacy
+
+The web calculator runs entirely in your browser and does not send evaluation data to a server. Avoid entering sensitive customer information in exported reports unless your organization has approved that use.
 
 ## License
 
