@@ -4,7 +4,7 @@ All notable changes to Support QA Scorecard are documented here.
 
 The project follows [Semantic Versioning](https://semver.org/).
 
-## [1.0.0] - 2026-09-21
+## [1.1.0] - 2026-09-21
 
 ### Added
 
@@ -20,4 +20,4 @@ The project follows [Semantic Versioning](https://semver.org/).
 - Shared web scoring logic now has explicit validation and automated boundary tests.
 - The root GitHub Pages application is the single canonical web entry point.
 
-[1.0.0]: https://github.com/SoumikMallick30/support-qa-scorecard/releases/tag/v1.0.0
+[1.1.0]: https://github.com/SoumikMallick30/support-qa-scorecard/releases/tag/v1.1.0
