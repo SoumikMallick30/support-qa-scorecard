@@ -53,12 +53,19 @@
     }
 
     input[type="number"],
+    input[type="text"],
+    textarea,
     select {
       width: 100%;
       padding: 12px;
       border: 1px solid #d1d5db;
       border-radius: 8px;
       font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 96px;
     }
 
     input:focus,
@@ -82,6 +89,39 @@
 
     button:hover {
       background: #1d4ed8;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+      outline: 3px solid #93c5fd;
+      outline-offset: 2px;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .actions button {
+      margin-top: 0;
+    }
+
+    .secondary {
+      background: #374151;
+    }
+
+    .secondary:hover {
+      background: #1f2937;
+    }
+
+    .validation-error {
+      color: #b91c1c;
+      margin: 12px 0 0;
+      min-height: 20px;
     }
 
     .result {
@@ -126,6 +166,43 @@
       font-size: 13px;
       margin-top: 25px;
     }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 16px auto;
+        padding: 12px;
+      }
+
+      .card {
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .container {
+        margin: 0;
+        max-width: none;
+      }
+
+      .card {
+        box-shadow: none;
+      }
+
+      .actions,
+      #calculateBtn,
+      .footer {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 
@@ -140,32 +217,32 @@
       <p class="subtitle">
         Evaluate a customer support interaction using a 100-point QA framework.
       </p>
-<div class="category">
+      <div class="category">
     <label for="agentName">Agent Name</label>
     <input
         type="text"
         id="agentName"
         placeholder="Enter agent name"
     >
-</div>
+      </div>
 
-<div class="category">
+      <div class="category">
     <label for="interactionId">Interaction ID</label>
     <input
         type="text"
         id="interactionId"
         placeholder="Enter interaction ID"
     >
-</div>
+      </div>
 
-<div class="category">
+      <div class="category">
     <label for="qaAnalyst">QA Analyst</label>
     <input
         type="text"
         id="qaAnalyst"
         placeholder="Enter QA analyst name"
     >
-</div>
+      </div>
       <div class="category">
         <label for="communication">
           Communication & Professionalism (Max 20)
@@ -246,32 +323,31 @@
           <option value="yes">Yes</option>
         </select>
       </div>
-<div class="category">
+      <div class="category">
     <label for="qaFeedback">QA Feedback</label>
     <textarea
         id="qaFeedback"
         rows="4"
         placeholder="Enter QA feedback, strengths, and improvement opportunities"
-        style="width:100%; box-sizing:border-box;"
     ></textarea>
-</div>
+      </div>
 
-<div class="category">
+      <div class="category">
     <label for="coachingNotes">Coaching Notes</label>
     <textarea
         id="coachingNotes"
         rows="4"
         placeholder="Enter coaching notes and action items"
-        style="width:100%; box-sizing:border-box;"
     ></textarea>
-</div>
-      <button onclick="calculateScore()">
+      </div>
+
+      <button id="calculateBtn" type="button">
         Calculate QA Score
       </button>
-<button id="printReportBtn" onclick="window.print()" style="display:none; margin-top:10px;">
-    Print / Download QA Report
-</button>
-      <div class="result" id="result">
+
+      <p class="validation-error" id="validationError" role="alert"></p>
+
+      <div class="result" id="result" aria-live="polite">
 
         <div class="score" id="score"></div>
 
@@ -279,6 +355,12 @@
 
         <div class="status" id="status"></div>
 
+      </div>
+
+      <div class="actions" id="reportActions" hidden>
+        <button class="secondary" id="downloadJsonBtn" type="button">Download JSON</button>
+        <button class="secondary" id="downloadCsvBtn" type="button">Download CSV</button>
+        <button class="secondary" id="printReportBtn" type="button">Print Report</button>
       </div>
 
       <div class="footer">
@@ -289,87 +371,7 @@
 
   </div>
 
-  <script>
-    function calculateScore() {
-
-      const fields = [
-        { id: "communication", max: 20 },
-        { id: "understanding", max: 20 },
-        { id: "resolution", max: 30 },
-        { id: "compliance", max: 15 },
-        { id: "experience", max: 15 }
-      ];
-
-      let total = 0;
-
-      for (const field of fields) {
-
-        const input = document.getElementById(field.id);
-        const value = Number(input.value);
-
-        if (
-          input.value.trim() === "" ||
-          !Number.isFinite(value) ||
-          value < 0 ||
-          value > field.max
-        ) {
-          alert(
-            "Please enter a valid score between 0 and " +
-            field.max +
-            " for every category."
-          );
-
-          input.focus();
-          return;
-        }
-
-        total += value;
-      }
-
-      let rating;
-
-      if (total >= 90) {
-        rating = "Excellent";
-      } else if (total >= 80) {
-        rating = "Meets Expectations";
-      } else if (total >= 70) {
-        rating = "Needs Improvement";
-      } else {
-        rating = "Unsatisfactory";
-      }
-
-      const critical =
-        document.getElementById("critical").value === "yes";
-
-      const result = document.getElementById("result");
-      const score = document.getElementById("score");
-      const ratingElement = document.getElementById("rating");
-      const status = document.getElementById("status");
-
-      score.textContent = total + " / 100";
-      ratingElement.textContent = "Rating: " + rating;
-
-      if (critical) {
-
-        status.innerHTML =
-          '<span class="error">' +
-          'Critical Error: YES<br>' +
-          'Result Flag: CRITICAL FAILURE' +
-          '</span>';
-
-      } else {
-
-        status.innerHTML =
-          '<span class="success">' +
-          'Critical Error: NO<br>' +
-          'Result Flag: Standard numerical result' +
-          '</span>';
-      }
-
-      result.style.display = "block";
-  document.getElementById("printReportBtn").style.display = "block";
-    }
-  </script>
+  <script src="web/app.js"></script>
 
 </body>
 </html>

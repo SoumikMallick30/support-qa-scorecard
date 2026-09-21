@@ -3,6 +3,7 @@
 Thank you for your interest in contributing to Support QA Scorecard!
 
 This project aims to provide a practical, reusable, and easy-to-understand quality assurance framework for customer support teams.
+
 ## Ways to Contribute
 
 You can contribute by:
@@ -13,13 +14,20 @@ You can contribute by:
 - Improving critical-error rules
 - Fixing documentation or code issues
 - Suggesting new features
-- ## How to Contribute
+## How to Contribute
 
 1. Fork this repository.
 2. Create a new branch for your changes.
 3. Make your changes and test them when applicable.
 4. Commit your changes with a clear commit message.
 5. Open a pull request describing what you changed and why.
+
+Run both test suites before opening a pull request:
+
+```bash
+python -m unittest discover -s tests -v
+node --test tests/test_web_calculator.js
+```
 
 ## Contribution Guidelines
 
@@ -72,6 +80,7 @@ Before submitting a pull request, please check that:
 - [ ] No confidential or real customer information is included.
 - [ ] Relevant documentation has been updated.
 - [ ] The change follows the existing project structure.
+- [ ] Python and JavaScript tests pass locally.
 
 ## Community Guidelines
 
